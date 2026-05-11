@@ -34,21 +34,21 @@ public class PostServiceImpl implements PostService {
         log.info("Start exporting files");
         final List<Post> posts = getPostsFromPlaceholder();
         if (posts.isEmpty()) {
-            log.warn("no posts to export");
+            log.warn("No posts to export");
             return;
         }
         posts.forEach(this::savePostToFile);
-        log.info("count={} | posts were successfully wrote to files ", posts.size());
+        log.info("Count={} | posts were successfully wrote to files ", posts.size());
     }
 
     private List<Post> getPostsFromPlaceholder() {
         try {
             final List<Post> posts = client.fetchPosts();
-            log.info("posts were fetched");
+            log.info("Posts were fetched");
             return posts;
 
         } catch (Exception ex) {
-            log.error("failed to fetch posts from api", ex);
+            log.error("Failed to fetch posts from api", ex);
             return List.of();
         }
     }

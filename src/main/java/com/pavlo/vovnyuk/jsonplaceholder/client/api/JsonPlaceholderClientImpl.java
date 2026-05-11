@@ -8,6 +8,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -28,7 +29,10 @@ public class JsonPlaceholderClientImpl implements JsonPlaceholderClient {
     }
 
     @Retryable(
-            retryFor = HttpServerErrorException.class,
+            retryFor = {
+                    HttpServerErrorException.class,
+                    ResourceAccessException.class
+            },
             maxAttempts = 3,
             backoff = @Backoff(delay = 1000, multiplier = 2.0)
     )
