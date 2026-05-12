@@ -3,7 +3,6 @@ package com.pavlo.vovnyuk.jsonplaceholder.client.api;
 import com.pavlo.vovnyuk.jsonplaceholder.client.model.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,7 +14,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
 public class JsonPlaceholderClientTest {
 
     private RestTemplate restTemplate;

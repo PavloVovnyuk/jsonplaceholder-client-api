@@ -1,6 +1,7 @@
 package com.pavlo.vovnyuk.jsonplaceholder.client.api;
 
 import com.pavlo.vovnyuk.jsonplaceholder.client.model.Post;
+import com.pavlo.vovnyuk.jsonplaceholder.client.runner.PostDataExportRunner;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,9 @@ class JsonPlaceholderRetryTest {
     @MockitoBean
     private RestTemplate restTemplate;
 
+    @MockitoBean
+    private PostDataExportRunner postDataExportRunner;
+
     @Autowired
     private JsonPlaceholderClient client;
 
@@ -35,6 +39,6 @@ class JsonPlaceholderRetryTest {
         //when
         assertThrows(HttpServerErrorException.class, () -> client.fetchPosts());
         //then
-        verify(restTemplate, atLeast(3)).getForEntity(anyString(), eq(Post[].class));
+        verify(restTemplate, times(3)).getForEntity(anyString(), eq(Post[].class));
     }
 }
